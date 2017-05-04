@@ -10,7 +10,7 @@ namespace Milton.Website.Controllers.Account
 {
     public partial class AccountController
     {
-        [AllowAnonymous]
+        [AllowAnonymous]//made a comment
         public ActionResult Login()
         {
             ViewBag.Title = "Login";
