@@ -189,8 +189,6 @@ C:\Users\josie\Source\Repos\Milton\Website\bin\Milton.Database.pdb
 C:\Users\josie\Source\Repos\Milton\Website\bin\Milton.Services.pdb
 C:\Users\josie\Source\Repos\Milton\Website\bin\Milton.pdb
 C:\Users\josie\Source\Repos\Milton\Website\bin\AutoMapper.xml
-C:\Users\josie\Source\Repos\Milton\Website\bin\SpreadsheetGear2012.Core.xml
-C:\Users\josie\Source\Repos\Milton\Website\bin\SpreadsheetGear2012.Drawing.xml
 C:\Users\josie\Source\Repos\Milton\Website\bin\Antlr3.Runtime.pdb
 C:\Users\josie\Source\Repos\Milton\Website\bin\Autofac.xml
 C:\Users\josie\Source\Repos\Milton\Website\bin\Autofac.Integration.Mvc.xml

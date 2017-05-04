@@ -48,9 +48,6 @@
       <HintPath>..\packages\Memcached.Client.1.0.0\lib\Memcached.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SpreadsheetGear">
-      <HintPath>..\Website\bin\SpreadsheetGear.dll</HintPath>
-    </Reference>
     <Reference Include="SpreadsheetGear2012.Core, Version=7.4.29.101, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
     <Reference Include="SpreadsheetGear2012.Drawing, Version=7.4.29.101, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
     <Reference Include="System" />
