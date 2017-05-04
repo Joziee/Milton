@@ -1,0 +1,92 @@
+﻿<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Patients</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Patients
+            <span class="page-header_subtitle"></span>
+        </h1>
+    </div>
+</section>
+
+<section class="page-content">
+
+    <div class="col-lg-12">
+        <h4>Hospitals:</h4>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="panel-table-inner-offset">
+                    <table id="hospitals" class="table dataTable no-footer" role="grid" aria-describedby="tableDataTables1_info">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Patient Firstnames">Name</th>
+                                <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Botswana Price">Botswana Price</th>
+                                <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Botswana Return Price">Botswana Return Price</th>
+                                <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Swaziland Price">Swaziland Price</th>
+                                <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Swaziland Return Price">Swaziland Return Price</th>
+                                <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Actions">Actions</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section Scripts{
+
+    <script>
+
+        $(function () {
+
+            $('#hospitals').dataTable({
+                serverSide: true,
+                processing: true,
+                ajaxSource: '/rates/Json',
+                columns: [
+                    {
+                        data: 'Name',
+                        sortable: false,
+                        searchable: false,
+                        width: '25%'
+                    },
+                    {
+                        data: 'BotswanaPrice',
+                        sortable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'BotswanaReturnPrice',
+                        sortable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'SwazilandPrice',
+                        sortable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'SwazilandReturnPrice',
+                        sortable: false,
+                        searchable: false
+                    },
+                    {
+                        data: null,
+                        sortable: false,
+                        searchable: false,
+                        render: function (data, type, full, meta) {
+                            return '<a class="btn btn-info btn-xs" href="/rates/manage?hospitalId=' + data.HospitalId + '"><i class="fa fa-pencil"></i></a>';
+                        }
+                    }
+                ]
+            });
+
+        });
+
+    </script>
+
+}

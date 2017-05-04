@@ -1,0 +1,196 @@
+﻿@{
+    var patientService = DependencyResolver.Current.GetService<Milton.Services.Medical.IPatientService>();
+    int year = DateTime.Now.Year;
+    int month = DateTime.Now.Month;
+    int daysInMonth = DateTime.DaysInMonth(year, month);
+
+    var monthToDateInvoices = patientService.TotalInvoices(new DateTime(year, month, 1), new DateTime(year, month, daysInMonth));
+    var yearToDateInvoices = patientService.TotalInvoices(new DateTime(year, 1, 1), new DateTime(year, month, DateTime.Now.Day));
+}
+
+<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Report</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Report
+            <span class="page-header_subtitle"></span>
+        </h1>
+    </div>
+</section>
+
+<section class="page-content">
+
+    @*<div class="row">
+            <div class="col-lg-6 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <span>Month to Date Invoices (<strong>@DateTime.Now.ToString("MMMM")</strong>)</span>
+                        <h3>R@(monthToDateInvoices.TotalAccommodation) (Accommodation)</h3>
+                        <h3>R@(monthToDateInvoices.TotalTransport) (Transport)</h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-6 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <span>Year to Date Invoices (<strong>@DateTime.Now.ToString("yyyy")</strong>)</span>
+                        <h3>R@(yearToDateInvoices.TotalAccommodation) (Accommodation)</h3>
+                        <h3>R@(yearToDateInvoices.TotalTransport) (Transport)</h3>
+                    </div>
+                </div>
+            </div>
+
+        <div class="col-lg-3 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-body no-padding">
+                        <div class="mini-card mini-card-info">
+                            <div class="mini-card-left">
+                                <span>Month to Date Commission Payable (<strong>@DateTime.Now.ToString("MMMM")</strong>)</span>
+                                <h2>R0</h2>
+                            </div>
+                            <div class="mini-card-right">
+                                <div class="bemat-mini-chart bemat-mini-chart-info">
+                                    <span class="peity-line" style="display: none;">4,3,5,6,5,4,6,3,2,6</span><svg class="peity" height="28" width="64"><polygon fill="#c6d9fd" points="0 27.5 0 9.5 7.111111111111111 14 14.222222222222221 5 21.333333333333332 0.5 28.444444444444443 5 35.55555555555556 9.5 42.666666666666664 0.5 49.77777777777777 14 56.888888888888886 18.5 64 0.5 64 27.5"></polygon><polyline fill="none" points="0 9.5 7.111111111111111 14 14.222222222222221 5 21.333333333333332 0.5 28.444444444444443 5 35.55555555555556 9.5 42.666666666666664 0.5 49.77777777777777 14 56.888888888888886 18.5 64 0.5" stroke="#4d89f9" stroke-width="1" stroke-linecap="square"></polyline></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-body no-padding">
+                        <div class="mini-card mini-card-danger">
+                            <div class="mini-card-left">
+                                <span>Year to Date Commission Payable (<strong>@DateTime.Now.ToString("yyyy")</strong>)</span>
+                                <h2>R0</h2>
+                            </div>
+                            <div class="mini-card-right">
+                                <div class="bemat-mini-chart bemat-mini-chart-danger">
+                                    <span class="peity-bar" style="display: none;">4,3,5,6,5,4,6,3,2,6</span><svg class="peity" height="28" width="64"><rect fill="#4D89F9" x="0.64" y="9.333333333333336" width="5.12" height="18.666666666666664"></rect><rect fill="#4D89F9" x="7.040000000000001" y="14" width="5.119999999999999" height="14"></rect><rect fill="#4D89F9" x="13.440000000000001" y="4.666666666666664" width="5.119999999999997" height="23.333333333333336"></rect><rect fill="#4D89F9" x="19.84" y="0" width="5.120000000000001" height="28"></rect><rect fill="#4D89F9" x="26.24" y="4.666666666666664" width="5.1200000000000045" height="23.333333333333336"></rect><rect fill="#4D89F9" x="32.64" y="9.333333333333336" width="5.1200000000000045" height="18.666666666666664"></rect><rect fill="#4D89F9" x="39.04" y="0" width="5.1200000000000045" height="28"></rect><rect fill="#4D89F9" x="45.44" y="14" width="5.1200000000000045" height="14"></rect><rect fill="#4D89F9" x="51.839999999999996" y="18.666666666666668" width="5.1200000000000045" height="9.333333333333332"></rect><rect fill="#4D89F9" x="58.239999999999995" y="0" width="5.1200000000000045" height="28"></rect></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>*@
+
+    <div class="row">
+        <form class="form">
+            <div class="col-md-3">
+                <div class="form-group floating-label">
+                    <input type="text" class="form-control" id="from-date" />
+                    <label for="from-date">Date From (yyyy/mm/dd)</label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group floating-label">
+                    <input type="text" class="form-control" id="to-date" />
+                    <label for="to-date">Date To (yyyy/mm/dd)</label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <a href="javascript:;" onclick="generateReport()" class="btn btn-raised btn-primary">Generate Report</a>
+            </div>
+        </form>
+    </div>
+
+    <div id="result">
+
+        <img id="loader" src="/images/loader.gif" style="display:none;" />
+        <p id="warning-text"><i class="material-icons md-48">report problem</i><h2>Please select the date range first and click on the Generate Report button</h2></p>
+
+    </div>
+
+</section>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#from-date").datepicker();
+            $("#to-date").datepicker();
+        });
+
+        function generateReport() {
+            var fromDate = $('#from-date').val();
+            var toDate = $('#to-date').val();
+
+            if (fromDate.length > 0 && toDate.length > 0) {
+
+                $('#warning-text').hide('slow');
+                $('#loader').show('slow');
+
+                $.ajax({
+                    url: '/report/generate',
+                    dataType: 'html',
+                    type: 'GET',
+                    data: { fromDate: fromDate, toDate: toDate },
+                    success: function (result) {
+
+                        $('#loader').hide('slow');
+
+                        $('#result').html(result);
+
+                        $('#lodge').DataTable({
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                    extend: 'print',
+                                    customize: function (win) {
+                                        $(win.document.body)
+                                            .css('font-size', '10pt')
+                                            .prepend(
+                                                '<p>' + $('#lodge_data').val() + ' (' + $('#from-date').val() + ' - ' + $('#to-date').val() + ')</p>'
+                                            );
+
+                                        $(win.document.body).find('table')
+                                            .addClass('compact')
+                                            .css('font-size', 'inherit');
+                                    }
+                                }
+
+                            ],
+
+                        });
+
+                        $('#transport').DataTable({
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                    extend: 'print',
+                                    customize: function (win) {
+                                        $(win.document.body)
+                                            .css('font-size', '10pt')
+                                            .prepend(
+                                                '<p>' + $('#transport_data').val() + ' (' + $('#from-date').val() + ' - ' + $('#to-date').val() + ')</p>'
+                                            );
+
+                                        $(win.document.body).find('table')
+                                            .addClass('compact')
+                                            .css('font-size', 'inherit');
+                                    }
+                                }
+
+                            ],
+
+                        });
+
+
+                    },
+                });
+            }
+        }
+
+    </script>
+
+}

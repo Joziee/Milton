@@ -1,0 +1,96 @@
+﻿@model Milton.Website.Models.Rates.RateViewModel
+<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Rates</li>
+        <li>Manage</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Manage Hospital Rates (@Model)
+            <span class="page-header_subtitle"></span>
+        </h1>
+    </div>
+</section>
+
+<section class="page-content">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @using (Html.BeginForm("Manage", "Rates", FormMethod.Post, new { id = "rates-form", @class = "form", role = "form" }))
+            {
+                @Html.HiddenFor(m => m.HospitalId)
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    <label for="Name">Name</label>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.BostwanaPrice, new { @class = "form-control" })
+                    <label for="BostwanaPrice">Botswana Price</label>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.BotswanaReturnPrice, new { @class = "form-control" })
+                    <label for="BotswanaReturnPrice">Botswana Return Price</label>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.SwazilandPrice, new { @class = "form-control" })
+                    <label for="SwazilandPrice">Swaziland Price</label>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.SwazilandReturnPrice, new { @class = "form-control" })
+                    <label for="SwazilandReturnPrice">Swaziland Return Price</label>
+                </div>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary materialRipple-light materialRipple-btn">Save<div class="materialRipple-md-ripple-container"></div></button>
+                    <a href="/rates" class="btn btn-danger materialRipple-light materialRipple-btn">Cancel<div class="materialRipple-md-ripple-container"></div></a>
+                </div>
+            }
+        </div>
+    </div>
+
+</section>
+
+@section Scripts{
+
+    <script>
+
+        $(document).ready(function () {
+            $('#rates-form').validate({
+                rules: {
+                    Name: {
+                        required: true
+                    },
+                    BotswanaPrice: {
+                        required: true
+                    },
+                    BotswanaReturnPrice: {
+                        required: true
+                    },
+                    SwazilandPrice: {
+                        required: true
+                    },
+                    SwazilandReturnPrice: {
+                        required: true
+                    }
+                },
+                highlight: function (element) {
+                    $(element).closest('.form-group').addClass('has-error');
+                },
+                unhighlight: function (element) {
+                    $(element).closest('.form-group').removeClass('has-error');
+                },
+                errorElement: 'span',
+                errorClass: 'help-block',
+                errorPlacement: function (error, element) {
+                    if (element.parent('.input-group').length) {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+            });
+        });
+
+    </script>
+
+}

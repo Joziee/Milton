@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{99942628-B2CD-43E6-A1BE-8019F566E009}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Milton.Services</RootNamespace>
+    <AssemblyName>Milton.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FastMember, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.0.0.11\lib\net40\FastMember.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.85.4.369, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\ICSharpCode.SharpZipLib.dll.0.85.4.369\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Memcached.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42c0400964dcc297, processorArchitecture=MSIL">
+      <HintPath>..\packages\Memcached.Client.1.0.0\lib\Memcached.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SpreadsheetGear">
+      <HintPath>..\Website\bin\SpreadsheetGear.dll</HintPath>
+    </Reference>
+    <Reference Include="SpreadsheetGear2012.Core, Version=7.4.29.101, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
+    <Reference Include="SpreadsheetGear2012.Drawing, Version=7.4.29.101, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Tools\Tester\bin\Debug\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="AWSSDK, Version=2.3.52.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3">
+      <HintPath>..\packages\AWSSDK.2.3.52.0\lib\net45\AWSSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d">
+      <HintPath>..\packages\MySql.Data.6.9.8\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.8\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\AccountService.cs" />
+    <Compile Include="Business\AccountServiceExtensions.cs" />
+    <Compile Include="Business\BatchService.cs" />
+    <Compile Include="Business\BorderTripService.cs" />
+    <Compile Include="Business\DailyReportLogService.cs" />
+    <Compile Include="Business\HospitalTripService.cs" />
+    <Compile Include="Business\IAccountService.cs" />
+    <Compile Include="Business\IBatchService.cs" />
+    <Compile Include="Business\IBorderTripService.cs" />
+    <Compile Include="Business\IDailyReportLogService.cs" />
+    <Compile Include="Business\IHospitalTripService.cs" />
+    <Compile Include="Business\IOtherExpenseService.cs" />
+    <Compile Include="Business\IPersonService.cs" />
+    <Compile Include="Business\IRegionService.cs" />
+    <Compile Include="Business\OtherExpenseService.cs" />
+    <Compile Include="Business\PersonService.cs" />
+    <Compile Include="Business\RegionService.cs" />
+    <Compile Include="Cache\CacheExtensions.cs" />
+    <Compile Include="Cache\ICacheManager.cs" />
+    <Compile Include="Cache\MemoryCacheManager.cs" />
+    <Compile Include="Configuration\ISettingsService.cs" />
+    <Compile Include="Configuration\SettingsService.cs" />
+    <Compile Include="Finance\AccommodationRateService.cs" />
+    <Compile Include="Finance\IAccommodationRateService.cs" />
+    <Compile Include="Finance\IMealRateService.cs" />
+    <Compile Include="Finance\IPaymentService.cs" />
+    <Compile Include="Finance\ITransportRateService.cs" />
+    <Compile Include="Finance\MealRateService.cs" />
+    <Compile Include="Finance\PaymentService.cs" />
+    <Compile Include="Finance\TransportRateService.cs" />
+    <Compile Include="Medical\AdmitDischargeService.cs" />
+    <Compile Include="Medical\AdmitService.cs" />
+    <Compile Include="Medical\DischargeService.cs" />
+    <Compile Include="Medical\HealthShareReconService.cs" />
+    <Compile Include="Medical\HospitalService.cs" />
+    <Compile Include="Medical\IAdmitDischargeService.cs" />
+    <Compile Include="Medical\IAdmitService.cs" />
+    <Compile Include="Medical\IDischargeService.cs" />
+    <Compile Include="Medical\IHealthShareReconService.cs" />
+    <Compile Include="Medical\IHospitalService.cs" />
+    <Compile Include="Medical\IPatientService.cs" />
+    <Compile Include="Medical\IReconService.cs" />
+    <Compile Include="Medical\PatientService.cs" />
+    <Compile Include="Medical\ReconService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporting\IReportService.cs" />
+    <Compile Include="Reporting\ReportService.cs" />
+    <Compile Include="Security\ISecurityService.cs" />
+    <Compile Include="Security\SecurityService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Milton.Database\Milton.Database.csproj">
+      <Project>{283d0055-98ca-4ff1-826c-04040ccdd659}</Project>
+      <Name>Milton.Database</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

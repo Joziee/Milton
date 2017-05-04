@@ -1,0 +1,201 @@
+﻿@model List<Milton.Website.Models.AdmitDischarge.AdmitDischargeViewModel>
+@{
+    var person = Milton.Web.Mvc.Helpers.Users.UserContext().Person;
+
+    var hospitalService = DependencyResolver.Current.GetService<Milton.Services.Medical.IHospitalService>();
+    var accountService = DependencyResolver.Current.GetService<Milton.Services.Business.IAccountService>();
+    var hospitals = hospitalService.GetAll();
+
+    var account = accountService.GetById((int)ViewBag.AccountId);
+    bool gaurdian = account.Gaurdian;
+
+    string lastHospitalName = "";
+    if (Model.Any())
+    {
+        lastHospitalName = Model.LastOrDefault().HospitalName;
+    }
+
+    string sentence = "Patient is still admitted to " + lastHospitalName + ".  Create a Discharge from " + lastHospitalName;
+    bool admission = false;
+    if (Model.Count == 0)
+    {
+        sentence = "Create a new Admission";
+        admission = true;
+
+    }
+
+    if (Model.Any())
+    {
+        if (Model.LastOrDefault().DischargedDate.HasValue)
+        {
+            sentence = "Create a new Admission";
+            admission = true;
+        }
+    }
+
+    var lastHospitalId = 0;
+    if (Model.Any() && !admission)
+    {
+        lastHospitalId = Model.LastOrDefault().HospitalId;
+    }
+}
+<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Capture Admissions/Discharges</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Capture Admissions/Discharges for @ViewBag.Name
+        </h1>
+    </div>
+</section>
+<section class="page-content">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form id="border-trip-form" class="form" action="/admitdischarge/capture" method="post">
+                <input type="hidden" id="AccountId" name="AccountId" value="@ViewBag.AccountId" />
+                <table id="table1" class="table">
+                    <thead>
+                        <tr>
+                            <th>Hospital</th>
+                            <th>Status</th>
+                            <th>Dates</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="3">No admissions/discharges yet</td>
+                            </tr>
+                        }
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.HospitalName</td>
+                                <td>Admitted @(item.DischargedDate.HasValue ? "and Discharged" : "")</td>
+                                <td>Admitted on @item.AdmittedDate.ToString("dd/MM/yyyy") @(item.DischargedDate.HasValue ? "and discharged on " + item.DischargedDate.Value.ToString("dd/MM/yyyy") : "")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <h3>@sentence</h3>
+                <div class="form-group">
+                    <select class="form-control" id="HospitalId" name="HospitalId">
+                        <option value="">&nbsp;</option>
+                        @foreach (var hospital in hospitals)
+                        {
+                            if (hospital.HospitalId == lastHospitalId)
+                            {
+                                <option selected="selected" value="@hospital.HospitalId">@hospital.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@hospital.HospitalId">@hospital.Name</option>
+                            }
+
+                        }
+                    </select>
+                    <label for="HospitalId">Select Hospital</label>
+                </div>
+                <div class="form-group">
+                    @if (admission)
+                    {
+                        <input class="form-control" id="AdmittedDate" name="AdmittedDate" type="text" />
+                    }
+                    else
+                    {
+                        <input class="form-control" id="DischargedDate" name="DischargedDate" type="text" />
+
+                    }
+                    <label>Date</label>
+                </div>
+                @if (gaurdian)
+                {
+                    <div class="form-group">
+                        <label>
+                            <input class="checkbox checkbox-primary" id="patient" type="checkbox" />
+                            <span>Patient</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input class="checkbox checkbox-primary" id="gaurdian" type="checkbox" />
+                            <span>Guardian</span>
+                        </label>
+                    </div>
+                }
+                else
+                {
+                    <input type="hidden" name="Patient" value="True" />
+                }
+
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary materialRipple-light materialRipple-btn">Save<div class="materialRipple-md-ripple-container"></div></button>
+                    <a class="btn btn-warning" href="/admitdischarge">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+</section>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        $("#AdmittedDate").datepicker();
+        $("#DischargedDate").datepicker();
+
+        $('#gaurdian').on('ifChanged', function (event) { $(event.target).trigger('change'); });
+        $('#patient').on('ifChanged', function (event) { $(event.target).trigger('change'); });
+
+        $('#border-trip-form').on('submit', function () {
+            var val = false;
+            if ($('#return').is(':checked')) val = true;
+            $('#border-trip-form').append('<input type="hidden" name="ReturnTrip" value="' + val + '" />');
+            var patient = false;
+            if ($('#patient').is(':checked')) patient = true;
+            var gaurdian = false;
+            if ($('#gaurdian').is(':checked')) gaurdian = true;
+            $('#border-trip-form').append('<input type="hidden" name="Patient" value="' + patient + '" />');
+            $('#border-trip-form').append('<input type="hidden" name="Gaurdian" value="' + gaurdian + '" />');
+        });
+
+        $(document).ready(function () {
+            $('#border-trip-form').validate({
+                rules: {
+                    RegionId: {
+                        required: true
+                    },
+                    Date: {
+                        required: true
+                    }
+                },
+                highlight: function (element) {
+                    $(element).closest('.form-group').addClass('has-error');
+                },
+                unhighlight: function (element) {
+                    $(element).closest('.form-group').removeClass('has-error');
+                },
+                errorElement: 'span',
+                errorClass: 'help-block',
+                errorPlacement: function (error, element) {
+                    if (element.parent('.input-group').length) {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+            });
+        });
+
+    </script>
+
+}

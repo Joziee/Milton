@@ -1,0 +1,57 @@
+﻿<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Patient Depart</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Patient Depart
+        </h1>
+    </div>
+</section>
+<section class="page-content">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form" action="/accounts/depart" method="post">
+                <input type="hidden" name="AccountId" id="AccountId" />
+                <div class="form-group">
+                    <input type="text" class="form-control" name="IdNumber" id="IdNumber" />
+                    <label for="IdNumber">Patient ID/Passport Number</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="DepartureDate" id="DepartureDate" />
+                    <label for="DepartureDate">Departure Date</label>
+                </div>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary materialRipple-light materialRipple-btn">Submit Departure<div class="materialRipple-md-ripple-container"></div></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+</section>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#IdNumber").autocomplete({
+                source: "/accounts/autocomplete",
+                minLength: 2,
+                select: function (event, ui) {
+                    $('#IdNumber').html(ui.item.value);
+                    $('#AccountId').val(ui.item.id);
+                }
+            });
+
+            $("#DepartureDate").datepicker();
+        });
+
+    </script>
+
+}

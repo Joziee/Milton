@@ -1,0 +1,169 @@
+﻿@using Milton.Web.Mvc.Helpers;
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Milton - @ViewBag.Title</title>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap Core CSS - Include with every page -->
+    <link href="/styles/bootstrap.min.css" rel="stylesheet">
+    <!-- Bemat Admin CSS - Include with every page -->
+    <link href="/styles/bemat-admin.min.css" rel="stylesheet" id="theme-switcher">
+    <!-- Documentation Prettify -->
+    <link href="/styles/prettify-tomorrow.css" rel="stylesheet" />
+
+    <link href="/styles/nv.d3.css" rel="stylesheet">
+    <link href="/styles/jquery-ui.min.css" rel="stylesheet">
+    <link href="/styles/buttons.dataTables.min.css" rel="stylesheet" />
+
+    <script src="/scripts/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="/scripts/jquery-ui.custom.min.js" type="text/javascript"></script>
+    <script src="/scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/scripts/modernizr-2.6.2-respond-1.1.0.min.js" type="text/javascript"></script>
+
+    <!-- Dashboard Level NVD3 Charts -->
+    <script src="/scripts/d3.v3.js" charset="utf-8"></script>
+    <script src="/scripts/nv.d3.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.maskedinput.min.js"></script>
+
+    <script src="/scripts/prettify.js" type="text/javascript"></script>
+    <script src="/scripts/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+    <script src="/scripts/icheck.min.js" type="text/javascript"></script>
+    <script src="/scripts/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="/scripts/dataTables.bootstrap.min.js" type="text/javascript"></script>
+    <script src="/scripts/dataTables.buttons.min.js"></script>
+    <script src="/scripts/buttons.print.min.js"></script>
+    <script src="/scripts/jquery.fullscreen-min.js" type="text/javascript"></script>
+    <script src="/scripts/moment.min.js" type="text/javascript"></script>
+    <script src="/scripts/fullcalendar.min.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.sparkline.min.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.peity.min.js" type="text/javascript"></script>
+    <script src="/scripts/chartist.min.js" type="text/javascript"></script>
+    <script src="/scripts/summernote.min.js" type="text/javascript"></script>
+    <script src="/scripts/ckeditor.js" type="text/javascript"></script>
+    <script src="/scripts/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+
+    <script src="/scripts/jquery.materialRipple.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.snackbar.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.toasts.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.speedDial.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.circularProgress.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.linearProgress.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.subheader.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.simplePieChart.js" type="text/javascript"></script>
+
+    <script src="/scripts/jquery-ui.min.js" type="text/javascript"></script>
+
+    <script src="/scripts/bemat-admin-common.min.js?v=1"></script>
+    <script src="/scripts/jquery.validate.min.js"></script>
+
+</head>
+<body class="container-fluid">
+    <div id="page-wrapper">
+        <aside id="left-content" data-toggle="open" data-default="open" data-size="">
+            <header class="header-container">
+                <div class="header-wrapper">
+                    <div id="header-brand">
+                        <div class="logo padding-left-2">
+                            <span class="logo-image">M</span>
+                            <span class="logo-text">Milton</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div id="sidebar-wrapper">
+                @*<div id="userbox">
+                        <div id="useravatar">
+                            <div class="avatar-thumbnail">
+                                <img src="img/avatar.png" class="img-circle" />
+                            </div>
+                        </div>
+                        <div id="userinfo">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default-bright btn-flat dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    John Doe <i class="material-icons">arrow_drop_down</i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#"><i class="material-icons">person</i>Your Profile</a></li>
+                                    <li><a href="#"><i class="material-icons">settings</i>Settings</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#"><i class="material-icons">lock</i> Lock</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#"><i class="material-icons">exit_to_app</i> Log Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>*@
+
+                @Html.Partial("_SideMenu")
+            </div>
+        </aside>
+
+        <section id="right-content">
+            @Html.Partial("_TopMenu")
+            <section id="right-content-wrapper">
+                @RenderBody()
+            </section>
+        </section>
+    </div>
+
+    <script type="text/javascript">
+
+        function notifySuccess(msg) {
+            $.snackbar("add", {
+                type: "success",
+                msg: msg,
+                buttonText: "Close",
+            });
+        }
+
+        function notifyError(msg) {
+            $.snackbar("add", {
+                type: "danger",
+                msg: msg,
+                buttonText: "Close",
+            });
+        }
+
+        $(document).ready(function () {
+
+        });
+
+    </script>
+
+    @if (TempData["NotificationSuccess"] != null)
+    {
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                notifySuccess('@TempData["NotificationSuccess"].ToString()');
+            });
+
+        </script>
+    }
+
+    @if (TempData["NotificationError"] != null)
+    {
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                notifyError('@TempData["NotificationError"].ToString()');
+            });
+
+        </script>
+    }
+
+    @RenderSection("Scripts", false)
+
+</body>
+</html>

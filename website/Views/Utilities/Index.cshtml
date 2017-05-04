@@ -1,0 +1,138 @@
+﻿<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Utilities</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Utilities
+            <span class="page-header_subtitle"></span>
+        </h1>
+    </div>
+</section>
+
+<section class="page-content">
+
+    <input type="hidden" id="Id_Number">
+
+    <div class="row">
+        <div class="col-md-6 panel panel-default">
+            <div class="panel-body">
+                <form class="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="IdNumber">
+                        <label for="IdNumber">ID Number / Passport Number</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="Dob">
+                        <label for="Dob">Date of Birth (Required)</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="GaurdianDob">
+                        <label for="Dob">Guardian Date of Birth (Optional)</label>
+                    </div>
+                    <div class="form-group">
+                        <a class="btn btn-primary" href="javascript:;" onclick="updateResults()">Update</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 panel panel-default">
+            <div class="panel-body">
+                @using (Html.BeginForm("UploadHealthShareReport", "Utilities", FormMethod.Post, new { id = "report-form", @class = "form", role = "form", enctype = "multipart/form-data" }))
+                {
+                    <div class="form-group">
+                        <input type="file" class="form-control" name="HealthShareReportFile" id="HealthShareReportFile">
+                        <label for="ReconFile">Healthshare Report File</label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 panel panel-default">
+            <div class="panel-body">
+                @using (Html.BeginForm("UploadHealthShareRemittance", "Utilities", FormMethod.Post, new { id = "remittance-form", @class = "form", role = "form", enctype = "multipart/form-data" }))
+                {
+                    <div class="form-group">
+                        <input type="file" class="form-control" name="RemittanceFile" id="RemittanceFile">
+                        <label for="RemittanceFile">Healthshare Remittance File</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="RemittanceDate" id="RemittanceDate">
+                        <label for="RemittanceDate">Healthshare Remittance Date</label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#Dob").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+            $("#GaurdianDob").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+
+            $("#RemittanceDate").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+
+            $("#IdNumber").autocomplete({
+                source: "/utilities/autocomplete",
+                minLength: 2,
+                select: function (event, ui) {
+                    console.log(ui.item);
+                    $('#Id_Number').val(ui.item.id);
+                    $("#Dob").focus();
+                }
+            });
+        });
+
+
+
+        function updateResults() {
+            var id = $('#Id_Number').val();
+            var dob = $('#Dob').val();
+            var gaurdianDob = $('#GaurdianDob').val();
+
+            if (id.length > 0 && dob.length > 0) {
+
+                $.ajax({
+                    url: '/utilities/update',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: { id: id, dob: dob, gdob: gaurdianDob },
+                    success: function (result) {
+
+                        if (result.Success == true) {
+                            $('#IdNumber').val('');
+                            $('#Id_Number').val('');
+                            $('#Dob').val('');
+                            $('#GaurdianDob').val('');
+
+                            $("#IdNumber").focus();
+
+                            $.toasts("add", {
+                                msg: "Successfully updated patient Date of Birth",
+                            });
+                        }
+                        else {
+                            alert(result.Message);
+                        }
+                    },
+                });
+            }
+        }
+
+    </script>
+
+}

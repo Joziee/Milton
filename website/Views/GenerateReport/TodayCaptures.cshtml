@@ -1,0 +1,112 @@
+﻿@{
+    var accountService = DependencyResolver.Current.GetService<Milton.Services.Business.IAccountService>();
+    var admitService = DependencyResolver.Current.GetService<Milton.Services.Medical.IAdmitService>();
+    var dischargeService = DependencyResolver.Current.GetService<Milton.Services.Medical.IDischargeService>();
+    var hospitalTripService = DependencyResolver.Current.GetService<Milton.Services.Business.IHospitalTripService>();
+
+    DateTime today = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+    DateTime tomorrow = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(1);
+
+    var admissions = admitService.GetAll().Where(x => x.CreatedOnUtc >= today && x.CreatedOnUtc < tomorrow).OrderByDescending(x => x.CreatedOnUtc);
+    var discharges = dischargeService.GetAll().Where(x => x.CreatedOnUtc >= today && x.CreatedOnUtc < tomorrow).OrderByDescending(x => x.CreatedOnUtc);
+    var hospitalTrips = hospitalTripService.GetAll().Where(x => x.CreatedOnUtc >= today && x.CreatedOnUtc < tomorrow).OrderByDescending(x => x.CreatedOnUtc);
+}
+<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Reports</li>
+        <li>Captures Today Report</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Captures Today Report
+            <span class="page-header_subtitle"></span>
+        </h1>
+    </div>
+</section>
+
+<section class="page-content">
+
+    <div class="row">
+        <div class="col-md-12 panel panel-default">
+            <div class="panel-body">
+                <table id="patients" class="table dataTable no-footer" role="grid" aria-describedby="tableDataTables1_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Patient Firstnames">Account ID</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Surname">Description</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Region">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in admissions)
+                        {
+                            string part = "BOTS";
+                            if (item.Account.RegionId == 2)
+                            {
+                                part = "SWAZ";
+                            }
+                            <tr>
+                                <td>@(part + item.AccountId.ToString().PadLeft(6, '0'))</td>
+                                <td>Admission: @item.Hospital.Name - Admission Date: @item.AdmittedDate.ToString("dd/MM/yyyy")</td>
+                                <td>@item.CreatedOnUtc.ToString("dd/MM/yyyy HH:mm")</td>
+                            </tr>
+                        }
+                        @foreach (var item in discharges)
+                        {
+                            string part = "BOTS";
+                            if (item.Account.RegionId == 2)
+                            {
+                                part = "SWAZ";
+                            }
+                            <tr>
+                                <td>@(part + item.AccountId.ToString().PadLeft(6, '0'))</td>
+                                <td>Discharge: @item.Hospital.Name - Discharge Date: @item.DischargeDate.ToString("dd/MM/yyyy")</td>
+                                <td>@item.CreatedOnUtc.ToString("dd/MM/yyyy HH:mm")</td>
+                            </tr>
+                        }
+                        @foreach (var item in hospitalTrips)
+                        {
+                            string part = "BOTS";
+                            if (item.Account.RegionId == 2)
+                            {
+                                part = "SWAZ";
+                            }
+                            <tr>
+                                <td>@(part + item.AccountId.ToString().PadLeft(6, '0'))</td>
+                                <td>Hospital Trip: @item.Hospital.Name @(item.ReturnTrip ? "- Return Trip" : "")</td>
+                                <td>@item.CreatedOnUtc.ToString("dd/MM/yyyy HH:mm")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        function needLog(elem, accountId) {
+            var needLog = $(elem).is(':checked');
+
+            $.ajax({
+                url: '/accounts/needlog',
+                dataType: 'json',
+                type: 'POST',
+                data: { accountId: accountId, needLog: needLog },
+                success: function (result) {
+
+                },
+            });
+        }
+
+        $(document).ready(function () {
+            $('#patients').dataTable();
+        });
+
+    </script>
+
+}

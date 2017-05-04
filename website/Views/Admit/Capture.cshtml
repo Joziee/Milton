@@ -1,0 +1,163 @@
+﻿@model List<Milton.Website.Models.Admit.AdmitViewModel>
+@{
+    var person = Milton.Web.Mvc.Helpers.Users.UserContext().Person;
+
+    var hospitalService = DependencyResolver.Current.GetService<Milton.Services.Medical.IHospitalService>();
+    var accountService = DependencyResolver.Current.GetService<Milton.Services.Business.IAccountService>();
+    var hospitals = hospitalService.GetAll();
+
+    var account = accountService.GetById((int)ViewBag.AccountId);
+    bool gaurdian = account.Gaurdian;
+}
+
+<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Capture Admissions</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Capture Admissions for @ViewBag.Name
+        </h1>
+    </div>
+</section>
+<section class="page-content">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form id="admit-form" class="form" action="/admit/capture" method="post">
+                <input type="hidden" id="AccountId" name="AccountId" value="@ViewBag.AccountId" />
+                <table id="table1" class="table">
+                    <thead>
+                        <tr>
+                            <th>Hospital</th>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Doctor Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="3">No admissions yet</td>
+                            </tr>
+                        }
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.HospitalName</td>
+                                <td>Admitted on @item.AdmittedDate.ToString("dd/MM/yyyy")</td>
+                                <td>@(item.Patient? "Patient":"") @(item.Gaurdian ? "and Guardian":"")</td>
+                                <td>@item.DoctorName</td>
+                                <td><a class="btn btn-info btn-xs" href="/admit/edit?admitId=@item.AdmitId"><i class="fa fa-pencil"></i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <h3>Create a new admission</h3>
+                <div class="form-group">
+                    <select class="form-control" id="HospitalId" name="HospitalId">
+                        <option value="">&nbsp;</option>
+                        @foreach (var hospital in hospitals)
+                        {
+                            <option value="@hospital.HospitalId">@hospital.Name</option>
+                        }
+                    </select>
+                    <label for="HospitalId">Select Hospital</label>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="AdmittedDate" name="AdmittedDate" type="text" />
+                    <label>Date</label>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="DoctorName" name="DoctorName" type="text" />
+                    <label>Doctor Name</label>
+                </div>
+                @if (gaurdian)
+                {
+                    <div class="form-group">
+                        <label>
+                            <input class="checkbox checkbox-primary" id="patient" type="checkbox" />
+                            <span>Patient</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input class="checkbox checkbox-primary" id="gaurdian" type="checkbox" />
+                            <span>Guardian</span>
+                        </label>
+                    </div>
+                }
+                else
+                {
+                    <input type="hidden" name="Patient" value="True" />
+                }
+
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary materialRipple-light materialRipple-btn">Save<div class="materialRipple-md-ripple-container"></div></button>
+                    <a class="btn btn-warning" href="/admit">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+</section>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        $("#AdmittedDate").datepicker();
+
+        $('#gaurdian').on('ifChanged', function (event) { $(event.target).trigger('change'); });
+        $('#patient').on('ifChanged', function (event) { $(event.target).trigger('change'); });
+
+        $('#admit-form').on('submit', function () {
+            var val = false;
+            if ($('#return').is(':checked')) val = true;
+            $('#admit-form').append('<input type="hidden" name="ReturnTrip" value="' + val + '" />');
+            var patient = false;
+            if ($('#patient').is(':checked')) patient = true;
+            var gaurdian = false;
+            if ($('#gaurdian').is(':checked')) gaurdian = true;
+            $('#admit-form').append('<input type="hidden" name="Patient" value="' + patient + '" />');
+            $('#admit-form').append('<input type="hidden" name="Gaurdian" value="' + gaurdian + '" />');
+        });
+
+        $(document).ready(function () {
+            $('#admit-form').validate({
+                rules: {
+                    RegionId: {
+                        required: true
+                    },
+                    Date: {
+                        required: true
+                    }
+                },
+                highlight: function (element) {
+                    $(element).closest('.form-group').addClass('has-error');
+                },
+                unhighlight: function (element) {
+                    $(element).closest('.form-group').removeClass('has-error');
+                },
+                errorElement: 'span',
+                errorClass: 'help-block',
+                errorPlacement: function (error, element) {
+                    if (element.parent('.input-group').length) {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+            });
+        });
+
+    </script>
+
+}

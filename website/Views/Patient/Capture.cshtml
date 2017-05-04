@@ -1,0 +1,267 @@
+﻿@model Milton.Website.Models.Patient.PatientViewModel
+@{
+    var hospitalService = DependencyResolver.Current.GetService<Milton.Services.Medical.IHospitalService>();
+    var hospitals = hospitalService.GetAll();
+
+    var hospitalList = new List<SelectListItem>();
+    hospitalList.Add(new SelectListItem() { Text = "", Value = "" });
+    hospitalList.AddRange(hospitals.Select(m => new SelectListItem() { Text = m.Name, Value = m.HospitalId.ToString() }));
+}
+
+<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Patients</li>
+        <li>Capture</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Capture New Patient
+            <span class="page-header_subtitle"></span>
+        </h1>
+    </div>
+</section>
+
+<section class="page-content">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @using (Html.BeginForm("Capture", "Patient", FormMethod.Post, new { id = "patient-form", @class = "form", role = "form" }))
+            {
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    <label for="Name">Name</label>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+                    <label for="Surname">Surname</label>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.IdNumber, new { @class = "form-control", data_toggle = "tooltip", data_placement = "bottom", data_trigger = "hover", data_original_title = "ID Number or Passport Number" })
+                    <label for="IdNumber">ID Number/Passport Number</label>
+                </div>
+                <div class="form-group">
+                    <select id="RegionId" name="RegionId" class="form-control">
+                        <option value="">&nbsp;</option>
+                        <option value="1">Botswana</option>
+                        <option value="2">Swaziland</option>
+                    </select>
+                    <label for="RegionId">Select Region</label>
+                </div>
+                <div class="form-group dob" style="display:none;">
+                    @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control" })
+                    <label for="DateOfBirth">Date of Birth</label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input class="checkbox checkbox-primary" id="gaurdian" type="checkbox" />
+                        <span>Guardian included?</span>
+                    </label>
+                </div>
+                <div style="display:none;padding-left: 30px;" id="gaurdian-details">
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.GaurdianName, new { @class = "form-control" })
+                        <label for="Name">Guardian Name</label>
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.GaurdianSurname, new { @class = "form-control" })
+                        <label for="Surname">Guardian Surname</label>
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.GaurdianIdNumber, new { @class = "form-control", data_toggle = "tooltip", data_placement = "bottom", data_trigger = "hover", data_original_title = "ID Number or Passport Number" })
+                        <label for="IdNumber">Guardian ID Number/Passport Number</label>
+                    </div>
+                    <div class="form-group dob" style="display:none;">
+                        @Html.TextBoxFor(m => m.GaurdianDateOfBirth, new { @class = "form-control" })
+                        <label for="DateOfBirth">Guardian Date of Birth</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.ArrivalDate, new { @class = "form-control" })
+                    <label for="ArrivalDate">Arrival Date</label>
+                </div>
+                <div class="form-group text-right">
+                    <div style="display:none;" id="captured" class="alert alert-danger" role="alert">
+                        <strong>Warning!</strong>&nbsp;This patient have already been captured!
+                    </div>
+                    <button id="submit" type="submit" class="btn btn-primary materialRipple-light materialRipple-btn">Save<div class="materialRipple-md-ripple-container"></div></button>
+                    <a href="/patient" class="btn btn-danger materialRipple-light materialRipple-btn">Cancel<div class="materialRipple-md-ripple-container"></div></a>
+                </div>
+            }
+        </div>
+    </div>
+
+</section>
+
+@section Scripts{
+
+    <script>
+
+        $(function () {
+
+            $("#DateOfBirth").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+            $("#GaurdianDateOfBirth").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+
+            $("#ArrivalDate").datepicker({
+                onSelect: function (dateText, inst) {
+                    verify();
+                }
+            });
+
+            $('#RegionId').on('change', function () {
+                var id = $(this).val();
+                var len = id.length;
+                if (id == 1 || len != 13) {
+                    //show
+                    $('.dob').show('slow');
+                }
+                else {
+                    //hide
+                    $('.dob').hide('slow');
+                }
+            });
+
+            $("#DepartureDate").datepicker({
+                onSelect: function (dateText, inst) {
+                    verify();
+                }
+            });
+
+            $('.iCheck-helper').on('click', function () {
+                if (!$('.iCheck-helper').parent().hasClass('checked')) {
+                    $('#gaurdian-details').hide('slow');
+                    $('#GaurdianName').val('');
+                    $('#GaurdianSurname').val('');
+                    $('#GaurdianIdNumber').val('');
+                    $('#GaurdianDaysAccommodation').val('');
+                    $('#GaurdianNormalTransport').val('');
+                    $('#GaurdianAdmittedTransport').val('');
+                    $('#GaurdianDischargedTransport').val('');
+                }
+                else {
+                    $('#gaurdian-details').show('slow');
+                }
+            });
+
+            $('#gaurdian').on('change', function () {
+                if ($('#gaurdian-details').is(':visible')) {
+                    $('#gaurdian-details').hide('slow');
+                    $('#GaurdianName').val('');
+                    $('#GaurdianSurname').val('');
+                    $('#GaurdianIdNumber').val('');
+                    $('#GaurdianDaysAccommodation').val('');
+                    $('#GaurdianNormalTransport').val('');
+                    $('#GaurdianAdmittedTransport').val('');
+                    $('#GaurdianDischargedTransport').val('');
+                }
+                else {
+                    $('#gaurdian-details').show('slow');
+                }
+            });
+
+            $('#patient-form').on('submit', function () {
+                var val = false;
+                if ($('.iCheck-helper').parent().hasClass('checked')) val = true;
+                $('#patient-form').append('<input type="hidden" name="Gaurdian" value="' + val + '" />');
+            });
+
+            $("#IdNumber").on('blur', function () {
+                console.log('id number blur');
+                verify();
+            });
+
+            $("#AdmittedDate1").datepicker();
+            $("#AdmittedDate2").datepicker();
+            $("#AdmittedDate3").datepicker();
+            $("#AdmittedDate4").datepicker();
+            $("#DischargedDate1").datepicker();
+            $("#DischargedDate2").datepicker();
+            $("#DischargedDate3").datepicker();
+            $("#DischargedDate4").datepicker();
+            $("#GaurdianAdmittedDate1").datepicker();
+            $("#GaurdianAdmittedDate2").datepicker();
+            $("#GaurdianAdmittedDate3").datepicker();
+            $("#GaurdianAdmittedDate4").datepicker();
+            $("#GaurdianDischargedDate1").datepicker();
+            $("#GaurdianDischargedDate2").datepicker();
+            $("#GaurdianDischargedDate3").datepicker();
+            $("#GaurdianDischargedDate4").datepicker();
+        });
+
+        function verify() {
+            var id = $('#IdNumber').val();
+            var arrivalDate = $('#ArrivalDate').val();
+            var departureDate = $('#DepartureDate').val();
+
+            if (id.length == 0 || arrivalDate.length == 0 || departureDate.length == 0) return;
+
+            $.ajax({
+                url: '/patient/verify',
+                dataType: 'json',
+                type: 'GET',
+                data: { idNumber: id, ad: arrivalDate, dd: departureDate },
+                success: function (result) {
+                    if (result.Success == false) {
+                        $('#captured').show('slow');
+                        $('#submit').hide('slow');
+                    }
+                    else {
+                        $('#captured').hide('slow');
+                        $('#submit').show('slow');
+                    }
+                },
+            });
+        }
+
+        $(document).ready(function () {
+            $('#patient-form').validate({
+                rules: {
+                    Name: {
+                        required: true
+                    },
+                    Surname: {
+                        required: true
+                    },
+                    IdNumber: {
+                        required: true
+                    },
+                    ArrivalDate: {
+                        required: true
+                    },
+                    DepartureDate: {
+                        required: true
+                    },
+                    RegionId: {
+                        required: true
+                    },
+                    HospitalId: {
+                        required: true
+                    },
+                    NormalTransport: {
+                        required: true
+                    },
+                    PharmacyTotal: {
+                        required: true
+                    }
+                },
+                highlight: function (element) {
+                    $(element).closest('.form-group').addClass('has-error');
+                },
+                unhighlight: function (element) {
+                    $(element).closest('.form-group').removeClass('has-error');
+                },
+                errorElement: 'span',
+                errorClass: 'help-block',
+                errorPlacement: function (error, element) {
+                    if (element.parent('.input-group').length) {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+            });
+        });
+
+    </script>
+
+}

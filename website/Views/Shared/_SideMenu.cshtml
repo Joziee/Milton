@@ -1,0 +1,90 @@
+﻿@{
+    var person = Milton.Web.Mvc.Helpers.Users.UserContext().Person;
+    var securityService = DependencyResolver.Current.GetService<Milton.Services.Security.ISecurityService>();
+    var adminRole = securityService.GetSystemRole(Milton.Database.Models.Security.SystemRoles.Admin);
+    bool isAdmin = person.Roles.Contains(adminRole);
+}
+
+<nav id="sidebar">
+    <ul>
+        <li>
+            <a href="/">
+                <span class="menu-item-ico"><i class="material-icons">dashboard</i></span>
+                <span class="menu-item-name">Dashboard</span>
+            </a>
+        </li>
+
+
+        <li>
+            <a href="">
+                <span class="menu-item-ico"><i class="material-icons">assignment_ind</i></span>
+                <span class="menu-item-name">Patients</span>
+            </a>
+            <ul>
+                <li><a href="/accounts">All Patients</a></li>
+                <li><a href="/hospitaltrip">Hospital Trip</a></li>
+                <li><a href="/bordertrip">Border/Bus Trips</a></li>
+                @*<li><a href="/admitdischarge">Admissions / Discharges</a></li>*@
+                <li><a href="/admit">Admissions</a></li>
+                <li><a href="/discharge">Discharges</a></li>
+                <li><a href="/expense">Other Expenses</a></li>
+                <li><a href="/accounts/depart">Patient Depart</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="">
+                <span class="menu-item-ico"><i class="material-icons">insert_chart</i></span>
+                <span class="menu-item-name">Reports</span>
+            </a>
+            <ul>
+                <li><a href="/generatereport/daily">Daily Report</a></li>
+                <li><a href="/generatereport/needlog">Need LOG Report</a></li>
+                <li><a href="/generatereport/todaycaptures">Captures Today</a></li>
+                @if (isAdmin)
+                {
+                    <li><a href="/generatereport/patient">Patient Full Report</a></li>
+                    <li><a href="/generatereport/financial">Financial Report</a></li>
+                }
+            </ul>
+        </li>
+
+        @if (isAdmin)
+        {
+            <li>
+                <a href="/payment">
+                    <span class="menu-item-ico"><i class="material-icons">attach_money</i></span>
+                    <span class="menu-item-name">Payments</span>
+                </a>
+            </li>
+            <li>
+                <a href="/batch">
+                    <span class="menu-item-ico"><i class="material-icons">attach_money</i></span>
+                    <span class="menu-item-name">Batches</span>
+                </a>
+            </li>
+            if (person.Email == "admin")
+            {
+                <li>
+                    <a href="/recon">
+                        <span class="menu-item-ico"><i class="material-icons">swap_horiz</i></span>
+                        <span class="menu-item-name">Recon</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/utilities">
+                        <span class="menu-item-ico"><i class="material-icons">settings</i></span>
+                        <span class="menu-item-name">Utilities</span>
+                    </a>
+                </li>
+                @*<li>
+                    <a href="/rates">
+                        <span class="menu-item-ico"><i class="material-icons">settings</i></span>
+                        <span class="menu-item-name">Hospital Rates</span>
+                    </a>
+                </li>*@
+            }
+        }
+
+    </ul>
+</nav>

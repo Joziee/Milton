@@ -1,0 +1,84 @@
+﻿@{
+    var person = Milton.Web.Mvc.Helpers.Users.UserContext().Person;
+}
+<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Recon</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Recon
+        </h1>
+    </div>
+</section>
+<section class="page-content">
+    <div class="row text-center">
+        <a href="javascript:refresh();" class="btn btn-primary">Refresh</a>
+    </div>
+    <div class="row">
+        <h4>Disputes</h4>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table id="patients" class="table dataTable no-footer" role="grid" aria-describedby="tableDataTables1_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Patient Firstnames">Name</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Surname">Surname</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Identification Number / Passport Number">ID Nr./Passport Nr.</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Region">Region</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Total Accommodation">Accomm.</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Total Transport">Transp.</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Total Transport">Actions</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h4>Outstanding Payments</h4>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table dataTable no-footer" role="grid" aria-describedby="tableDataTables1_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Patient Firstnames">Name</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Surname">Surname</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Identification Number / Passport Number">ID Nr./Passport Nr.</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Region">Region</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Total Accommodation">Accomm.</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Total Transport">Transp.</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Total Transport">Actions</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        function refresh() {
+            $.ajax({
+                url: '/recon/refresh',
+                type: 'GET',
+                success: function (result) {
+
+                    $.snackbar("add", {
+                        type: "success",
+                        msg: "Refreshed successfully!",
+                        buttonText: "Close",
+                    });
+                },
+            });
+        }
+
+    </script>
+
+}

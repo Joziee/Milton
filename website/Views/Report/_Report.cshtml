@@ -1,0 +1,81 @@
+﻿@model Milton.Website.Models.Report.ReportViewModel
+
+<input type="hidden" id="lodge_data" value="Concordia Lodge - R@(Model.Lodge.Sum(x => x.Total).ToString("0.00"))" />
+<input type="hidden" id="transport_data" value="DSC Transport - R@(Model.Transport.Sum(x => x.Total).ToString("0.00"))" />
+
+<div class="row">
+    <h1>Concordia Lodge</h1><h2>R@(Model.Lodge.Sum(x => x.Total).ToString("0.00"))</h2>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="panel-table-inner-offset">
+                <table id="lodge" class="table dataTable no-footer" role="grid" aria-describedby="tableDataTables1_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Patient Firstnames">Name</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Surname">Surname</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Identification Number / Passport Number">ID Nr./Passport Nr.</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Total Accommodation">Accommodation</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Total">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Lodge)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Surname</td>
+                                <td>@item.IdNumber</td>
+                                <td>@item.Accommodation</td>
+                                <td>R@(item.Total.ToString("0.00"))</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <h1>DSC Transport</h1><h2>R@(Model.Transport.Sum(x => x.Total).ToString("0.00"))</h2>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="panel-table-inner-offset">
+                <table id="transport" class="table dataTable no-footer" role="grid" aria-describedby="tableDataTables1_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Patient Firstnames">Name</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Surname">Surname</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Identification Number / Passport Number">ID Nr./Passport Nr.</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Total Accommodation">Transport</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Total">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Transport)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Surname</td>
+                                <td>@item.IdNumber</td>
+                                <td>@item.Transport</td>
+                                <td>R@(item.Total.ToString("0.00"))</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+
+
+    </script>
+
+}

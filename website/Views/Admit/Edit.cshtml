@@ -1,0 +1,138 @@
+﻿@model Milton.Website.Models.Admit.AdmitViewModel
+@{
+    var person = Milton.Web.Mvc.Helpers.Users.UserContext().Person;
+
+    var hospitalService = DependencyResolver.Current.GetService<Milton.Services.Medical.IHospitalService>();
+    var accountService = DependencyResolver.Current.GetService<Milton.Services.Business.IAccountService>();
+    var hospitals = hospitalService.GetAll();
+
+    var account = accountService.GetById((int)ViewBag.AccountId);
+    bool gaurdian = account.Gaurdian;
+}
+
+<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Patients</li>
+        <li>Admissions</li>
+        <li>Edit</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Edit Admission
+            <span class="page-header_subtitle"></span>
+        </h1>
+    </div>
+</section>
+
+<section class="page-content">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @using (Html.BeginForm("Edit", "Admit", FormMethod.Post, new { id = "admit-form", @class = "form", role = "form" }))
+            {
+                @Html.HiddenFor(m => m.AdmitId)
+                <input type="hidden" name="AccountId" id="AccountId" value="@ViewBag.AccountId" />
+                <div class="form-group">
+                    <input class="form-control" type="text" name="AdmittedDate" id="AdmittedDate" value="@Model.AdmittedDate.ToString("MM/dd/yyyy")" />
+                    <label for="AdmittedDate">Admitted Date</label>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.DoctorName, new { @class = "form-control" })
+                    <label for="DoctorName">Doctor Name</label>
+                </div>
+                if (gaurdian)
+                {
+                    <div class="form-group">
+                        <label>
+                            <input class="checkbox checkbox-primary" id="patient" type="checkbox" @(Model.Patient ? "checked=\"checked\"": "") />
+                            <span>Patient</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input class="checkbox checkbox-primary" id="gaurdian" type="checkbox" @(Model.Gaurdian ? "checked=\"checked\"": "")/>
+                            <span>Guardian</span>
+                        </label>
+                    </div>
+                }
+                else
+                {
+                    <input type="hidden" name="Patient" value="True" />
+                }
+                <div class="form-group">
+                    <select class="form-control" id="HospitalId" name="HospitalId">
+                        <option value="">&nbsp;</option>
+                        @foreach (var hospital in hospitals)
+                        {
+                            if (Model.HospitalId == hospital.HospitalId)
+                            {
+                                <option selected="selected" value="@hospital.HospitalId">@hospital.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@hospital.HospitalId">@hospital.Name</option>
+                            }
+                        }
+                    </select>
+                    <label for="HospitalId">Select Hospital</label>
+                </div>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary materialRipple-light materialRipple-btn">Update<div class="materialRipple-md-ripple-container"></div></button>
+                    <a href="/admit" class="btn btn-danger materialRipple-light materialRipple-btn">Cancel<div class="materialRipple-md-ripple-container"></div></a>
+                </div>
+            }
+        </div>
+    </div>
+
+</section>
+
+@section Scripts{
+
+    <script>
+
+        $(function () {
+
+            $("#AdmittedDate").datepicker();
+
+            $('#gaurdian').on('ifChanged', function (event) { $(event.target).trigger('change'); });
+            $('#patient').on('ifChanged', function (event) { $(event.target).trigger('change'); });
+
+            $('#admit-form').on('submit', function () {
+                var val = false;
+                if ($('#gaurdian').is(':checked')) val = true;
+                $('#admit-form').append('<input type="hidden" name="Gaurdian" value="' + val + '" />');
+                var p = false;
+                if ($('#patient').is(':checked')) p = true;
+                $('#admit-form').append('<input type="hidden" name="Patient" value="' + p + '" />');
+            });
+        });
+
+        $(document).ready(function () {
+            $('#admit-form').validate({
+                rules: {
+                    AdmittedDate: {
+                        required: true
+                    }
+                },
+                highlight: function (element) {
+                    $(element).closest('.form-group').addClass('has-error');
+                },
+                unhighlight: function (element) {
+                    $(element).closest('.form-group').removeClass('has-error');
+                },
+                errorElement: 'span',
+                errorClass: 'help-block',
+                errorPlacement: function (error, element) {
+                    if (element.parent('.input-group').length) {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+            });
+        });
+
+    </script>
+
+}

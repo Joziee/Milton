@@ -1,0 +1,217 @@
+﻿@model Milton.Website.Models.Accounts.AccountsViewModel
+@{
+    var items = new List<SelectListItem>();
+    items.Add(new SelectListItem() { Text = "", Value = "" });
+    items.Add(new SelectListItem() { Text = "Botswana", Value = "1" });
+    items.Add(new SelectListItem() { Text = "Swaziland", Value = "2" });
+
+    var hospitalService = DependencyResolver.Current.GetService<Milton.Services.Medical.IHospitalService>();
+    var hospitals = hospitalService.GetAll();
+
+    var hospitalList = new List<SelectListItem>();
+    hospitalList.Add(new SelectListItem() { Text = "", Value = "" });
+    hospitalList.AddRange(hospitals.Select(m => new SelectListItem() { Text = m.Name, Value = m.HospitalId.ToString() }));
+}
+
+<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Patients</li>
+        <li>Edit</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Edit Patient
+            <span class="page-header_subtitle"></span>
+        </h1>
+    </div>
+</section>
+
+<section class="page-content">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @using (Html.BeginForm("Edit", "Accounts", FormMethod.Post, new { id = "patient-form", @class = "form", role = "form" }))
+            {
+                @Html.HiddenFor(m => m.AccountId)
+                @Html.HiddenFor(m => m.NeedLog)
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    <label for="Name">Name</label>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+                    <label for="Surname">Surname</label>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.IdNumber, new { @class = "form-control", data_toggle = "tooltip", data_placement = "bottom", data_trigger = "hover", data_original_title = "ID Number or Passport Number" })
+                    <label for="IdNumber">ID Number/Passport Number</label>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control" })
+                    <label for="DateOfBirth">Date of Birth</label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input class="checkbox checkbox-primary" id="gaurdian" type="checkbox" @(Model.Gaurdian ? "checked" : "") />
+                        <span>Guardian included?</span>
+                    </label>
+                </div>
+                <div style="display:@(Model.Gaurdian ? "inline" : "none");padding-left: 30px;" id="gaurdian-details">
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.GaurdianName, new { @class = "form-control" })
+                        <label for="Name">Guardian Name</label>
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.GaurdianSurname, new { @class = "form-control" })
+                        <label for="Surname">Guardian Surname</label>
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.GaurdianIdNumber, new { @class = "form-control", data_toggle = "tooltip", data_placement = "bottom", data_trigger = "hover", data_original_title = "ID Number or Passport Number" })
+                        <label for="IdNumber">Guardian ID Number/Passport Number</label>
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.GaurdianDateOfBirth, new { @class = "form-control" })
+                        <label for="DateOfBirth">Guardian Date of Birth</label>
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.GaurdianAuthNumber, new { @class = "form-control" })
+                        <label for="GaurdianAuthNumber">Guardian Auth Number</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.TextBox("ArrivalDate", Model.ArrivalDate.ToString("MM/dd/yyyy"), new { @class = "form-control" })
+                    <label for="ArrivalDate">Arrival Date</label>
+                </div>
+                <div class="form-group">
+                    @Html.DropDownListFor(m => m.RegionId, items, new { @class = "form-control" })
+                    <label for="RegionId">Select Region</label>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.AuthNumber, new { @class = "form-control" })
+                    <label for="AuthNumber">Auth Number</label>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" id="HospitalId" name="HospitalId">
+                        <option value="">&nbsp;</option>
+                        @foreach (var hospital in hospitals)
+                        {
+                            if (Model.HospitalId == hospital.HospitalId)
+                            {
+                                <option selected="selected" value="@hospital.HospitalId">@hospital.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@hospital.HospitalId">@hospital.Name</option>
+                            }
+                        }
+                    </select>
+                    <label for="HospitalId">Referal Hospital</label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input class="checkbox checkbox-primary" @(Model.PatientBegin ? "checked" : "") id="patient-begin" type="checkbox" />
+                        <span>Is the patient currently admitted in a hospital on Arrival Date?</span>
+                    </label>
+                </div>
+                <div id="gaurdian-begin-details" class="form-group" @(Model.Gaurdian && Model.GaurdianBegin ? "" : "style=\"display:none;\"")>
+                    <label>
+                        <input class="checkbox checkbox-primary" id="gaurdian-begin" @(Model.GaurdianBegin ? "checked" : "") type="checkbox" />
+                        <span>Is the guardian currently admitted in a hospital on Arrival Date?</span>
+                    </label>
+                </div>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary materialRipple-light materialRipple-btn">Save<div class="materialRipple-md-ripple-container"></div></button>
+                    <a href="/accounts" class="btn btn-danger materialRipple-light materialRipple-btn">Cancel<div class="materialRipple-md-ripple-container"></div></a>
+                </div>
+            }
+        </div>
+    </div>
+
+</section>
+
+@section Scripts{
+
+    <script>
+
+        $(function () {
+
+            $("#DateOfBirth").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+            $("#GaurdianDateOfBirth").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+
+            $("#ArrivalDate").datepicker();
+
+            $('#gaurdian').on('ifChanged', function (event) { $(event.target).trigger('change'); });
+            $('#patient-begin').on('ifChanged', function (event) { $(event.target).trigger('change'); });
+            $('#gaurdian-begin').on('ifChanged', function (event) { $(event.target).trigger('change'); });
+
+            $('#gaurdian').on('change', function () {
+                if ($('#gaurdian-details').is(':visible')) {
+                    $('#gaurdian-details').hide('slow');
+                    $('#GaurdianName').val('');
+                    $('#GaurdianSurname').val('');
+                    $('#GaurdianIdNumber').val('');
+                    $('#GaurdianAuthNumber').val('');
+                    $('#gaurdian-begin-details').hide();
+                }
+                else {
+                    $('#gaurdian-details').show('slow');
+                    $('#gaurdian-begin-details').show();
+                }
+            });
+
+            $('#patient-form').on('submit', function () {
+                var val = false;
+                if ($('#gaurdian').is(':checked')) val = true;
+                $('#patient-form').append('<input type="hidden" name="Gaurdian" value="' + val + '" />');
+
+                var patientBegin = false;
+                if ($('#patient-begin').is(':checked')) patientBegin = true;
+                $('#patient-form').append('<input type="hidden" name="PatientBegin" value="' + patientBegin + '" />');
+
+                var gaurdianBegin = false;
+                if ($('#gaurdian-begin').is(':checked') && $('#gaurdian-begin-details').is(':visible')) gaurdianBegin = true;
+                $('#patient-form').append('<input type="hidden" name="GaurdianBegin" value="' + gaurdianBegin + '" />');
+            });
+        });
+
+        $(document).ready(function () {
+            $('#patient-form').validate({
+                rules: {
+                    Name: {
+                        required: true
+                    },
+                    Surname: {
+                        required: true
+                    },
+                    IdNumber: {
+                        required: true
+                    },
+                    ArrivalDate: {
+                        required: true
+                    },
+                    RegionId: {
+                        required: true
+                    }
+                },
+                highlight: function (element) {
+                    $(element).closest('.form-group').addClass('has-error');
+                },
+                unhighlight: function (element) {
+                    $(element).closest('.form-group').removeClass('has-error');
+                },
+                errorElement: 'span',
+                errorClass: 'help-block',
+                errorPlacement: function (error, element) {
+                    if (element.parent('.input-group').length) {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+            });
+        });
+
+    </script>
+
+}

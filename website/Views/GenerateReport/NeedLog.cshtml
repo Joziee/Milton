@@ -1,0 +1,87 @@
+﻿@{
+    var accountService = DependencyResolver.Current.GetService<Milton.Services.Business.IAccountService>();
+    var needLogAccounts = accountService.GetAll(null, true).Where(x => x.NeedLog).ToList();
+}
+<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Reports</li>
+        <li>Need LOG Report</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Need LOG Report
+            <span class="page-header_subtitle"></span>
+        </h1>
+    </div>
+</section>
+
+<section class="page-content">
+
+    <div class="row">
+        <div class="col-md-12 panel panel-default">
+            <div class="panel-body">
+                <table id="patients" class="table dataTable no-footer" role="grid" aria-describedby="tableDataTables1_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="sorting_asc" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Patient Firstnames">Account ID</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Surname">Name</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Surname">Surname</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Identification Number / Passport Number">ID Nr./Passport Nr.</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Region">Region</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Region">Arrival Date</th>
+                            <th class="sorting" tabindex="0" aria-controls="tableDataTables1" rowspan="1" colspan="1" aria-label="Patient Region">Need LOG</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in needLogAccounts)
+                        {
+                            string part = "BOTS";
+                            if(item.RegionId == 2)
+                            {
+                                part = "SWAZ";
+                            }
+                            <tr>
+                                <td>@(part + item.AccountId.ToString().PadLeft(6, '0'))</td>
+                                <td>@item.Name</td>
+                                <td>@item.Surname</td>
+                                <td>@item.IdNumber</td>
+                                <td>@item.Region.Name</td>
+                                <td>@item.ArrivalDate.ToString("dd/MM/yyyy")</td>
+                                <td><input type="checkbox" checked="checked" class="form-control" onclick="needLog(this, @item.AccountId)" /></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        function needLog(elem, accountId)
+        {
+            var needLog = $(elem).is(':checked');
+
+            $.ajax({
+                url: '/accounts/needlog',
+                dataType: 'json',
+                type: 'POST',
+                data: { accountId: accountId, needLog: needLog },
+                success: function (result) {
+                    
+                },
+            });
+        }
+
+        $(document).ready(function()
+        {
+            $('#patients').dataTable();
+        });
+
+    </script>
+
+}

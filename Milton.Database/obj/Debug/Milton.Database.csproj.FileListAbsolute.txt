@@ -1,0 +1,153 @@
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\Milton.Database.dll.config
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\Milton.Database.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\Milton.Database.pdb
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\Autofac.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\Autofac.Integration.Mvc.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\EntityFramework.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\MySql.Data.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\System.Web.Helpers.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\System.Web.Mvc.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\System.Web.Razor.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\System.Web.WebPages.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\Autofac.xml
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\Autofac.Integration.Mvc.xml
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\System.Web.Helpers.xml
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\System.Web.Mvc.xml
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\System.Web.Razor.xml
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\System.Web.WebPages.xml
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\EntityFramework.xml
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.Accounts.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischarge.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.Batches.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischargePatientGaurdian.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischargeNeedLog.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischargeLogAccount.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischargeChange.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.DoctorName.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AuthNumberOptional.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.ReferalHospital.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.SubstractAccommodation.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.SubstractAccommodationChange.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.DailyReportLogChanges.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.BeginChecks.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.GaurdianAuthNumber.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.HospitalRates.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.Sent.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.Pricing.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.BorderTrips.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.BorderTrips_Sent.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.BorderTrip_Batches.resources
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.csproj.GenerateResource.Cache
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.dll
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.pdb
+C:\Users\Aubrey\Dropbox\Aubrey Nyelele\Concordian Milton\Milton\src\Milton.Database\obj\Debug\Milton.Database.csprojResolveAssemblyReference.cache
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\Milton.Database.dll.config
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\Milton.Database.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\Milton.Database.pdb
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\Autofac.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\Autofac.Integration.Mvc.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\EntityFramework.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\MySql.Data.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\System.Web.Helpers.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\System.Web.Mvc.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\System.Web.Razor.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\System.Web.WebPages.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\Autofac.xml
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\Autofac.Integration.Mvc.xml
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\System.Web.Helpers.xml
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\System.Web.Mvc.xml
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\System.Web.Razor.xml
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\System.Web.WebPages.xml
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\EntityFramework.xml
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.Accounts.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischarge.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.Batches.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischargePatientGaurdian.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischargeNeedLog.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischargeLogAccount.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischargeChange.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.DoctorName.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AuthNumberOptional.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.ReferalHospital.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.SubstractAccommodation.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.SubstractAccommodationChange.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.DailyReportLogChanges.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.BeginChecks.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.GaurdianAuthNumber.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.HospitalRates.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.Sent.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.Pricing.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.BorderTrips.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.BorderTrips_Sent.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.Migrations.BorderTrip_Batches.resources
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.csproj.GenerateResource.Cache
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.dll
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.pdb
+C:\Users\SlyceonlineSam\Dropbox\Josephine Chivinge\Milton\src\src\Milton.Database\obj\Debug\Milton.Database.csprojResolveAssemblyReference.cache
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\Milton.Database.dll.config
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\Milton.Database.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\Milton.Database.pdb
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\Autofac.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\Autofac.Integration.Mvc.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\EntityFramework.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\MySql.Data.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\System.Web.Helpers.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\System.Web.Mvc.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\System.Web.Razor.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\System.Web.WebPages.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\Autofac.xml
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\Autofac.Integration.Mvc.xml
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\System.Web.Helpers.xml
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\System.Web.Mvc.xml
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\System.Web.Razor.xml
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\System.Web.WebPages.xml
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\EntityFramework.xml
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.csprojResolveAssemblyReference.cache
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.Accounts.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischarge.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.Batches.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischargePatientGaurdian.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischargeNeedLog.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischargeLogAccount.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AdmitDischargeChange.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.DoctorName.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.AuthNumberOptional.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.ReferalHospital.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.SubstractAccommodation.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.SubstractAccommodationChange.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.DailyReportLogChanges.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.BeginChecks.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.GaurdianAuthNumber.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.HospitalRates.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.Sent.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.Pricing.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.BorderTrips.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.BorderTrips_Sent.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.Migrations.BorderTrip_Batches.resources
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.csproj.GenerateResource.Cache
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.dll
+C:\Users\josie\Documents\Git\Milton\src\Milton.Database\obj\Debug\Milton.Database.pdb

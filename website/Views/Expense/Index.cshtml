@@ -1,0 +1,49 @@
+﻿<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Other Expenses</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Other Expenses
+        </h1>
+    </div>
+</section>
+<section class="page-content">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form" action="/expense/capture" method="get">
+                <input type="hidden" name="accountId" id="accountId" />
+                <div class="form-group">
+                    <input type="text" class="form-control" name="IdNumber" id="IdNumber" />
+                    <label for="IdNumber">Patient ID/Passport Number</label>
+                </div>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary materialRipple-light materialRipple-btn">Continue<div class="materialRipple-md-ripple-container"></div></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</section>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#IdNumber").autocomplete({
+                source: "/accounts/autocomplete",
+                minLength: 2,
+                select: function (event, ui) {
+                    $('#IdNumber').html(ui.item.value);
+                    $('#accountId').val(ui.item.id);
+                }
+            });
+        });
+
+    </script>
+
+}

@@ -1,0 +1,124 @@
+﻿@{
+    var person = Milton.Web.Mvc.Helpers.Users.UserContext().Person;
+}
+<section class="page-header alternative-header">
+    <ol class="breadcrumb">
+        <li>Milton</li>
+        <li>Payments</li>
+    </ol>
+    <div class="page-header_title">
+        <h1>
+            Payments
+        </h1>
+    </div>
+</section>
+<section class="page-content">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <form class="form">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="InvoiceNumber" id="InvoiceNumber" />
+                    <label for="InvoiceNumber">Invoice Number</label>
+                </div>
+                <div style="display:none;" class="form-group yes">
+                    <label for="Name">Patient Name and Surname</label>
+                    <p id="Name" class="form-control-static"></p>
+                </div>
+                <div style="display:none;" class="form-group yes">
+                    <label for="amount-display">Amount</label>
+                    <p id="amount-display" class="form-control-static"></p>
+                </div>
+                <div class="form-group no">
+                    <label for="amount-display">Amount</label>
+                    <input type="text" class="form-control" id="Amount" />
+                </div>
+                <div class="form-group">
+                    <label for="amount-display">Action Date</label>
+                    <input type="text" class="form-control" id="ActionDate" />
+                </div>
+                <div class="form-group text-right">
+                    <a href="javascript:Paid();" class="btn btn-primary materialRipple-light materialRipple-btn">Paid<div class="materialRipple-md-ripple-container"></div></a>
+                    <a class="btn btn-warning" href="javascript:Cancel();">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+</section>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        function Cancel() {
+            $('#Name').html('');
+            $('#Amount').val('');
+            $('#amount-display').html('');
+            $("#InvoiceNumber").val('');
+            $('#ActionDate').val('');
+        }
+
+        $(document).ready(function () {
+
+            $("#ActionDate").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+
+            $("#InvoiceNumber").on('keyup', function () {
+                var len = $(this).val().length;
+
+                if (len == 0) $('.yes').hide();
+                if (len == 0) $('.no').show();
+            });
+
+            //$("#InvoiceNumber").autocomplete({
+            //    source: "/payment/autocomplete",
+            //    minLength: 2,
+            //    select: function (event, ui) {
+            //        console.log(ui.item);
+            //        $('#Name').html(ui.item.name);
+            //        $('#amount-display').html(ui.item.amount);
+            //        $('.yes').show();
+            //        $('.no').hide();
+            //    }
+            //});
+        });
+
+        function Paid() {
+            var invoiceNumber = $('#InvoiceNumber').val();
+            var amount = $('#Amount').val();
+            if (amount.length == 0) amount = $('#amount-display').html().replace('R', '');
+            var actionDate = $('#ActionDate').val();
+
+            if (invoiceNumber.length > 0) {
+                $.ajax({
+                    url: '/payment/paid',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: { invoiceNumber: invoiceNumber, amount: amount, actionDate: actionDate },
+                    success: function (result) {
+                        if (result.exists == true) {
+                            $.snackbar("add", {
+                                type: "danger",
+                                msg: "Payment already captured!",
+                                buttonText: "Close",
+                            });
+                            Cancel();
+                        }
+                        else {
+                            $.snackbar("add", {
+                                type: "success",
+                                msg: "Payment created successfully!",
+                                buttonText: "Close",
+                            });
+                            Cancel();
+                        }
+                    },
+                });
+            }
+        }
+
+    </script>
+
+}

@@ -1,0 +1,134 @@
+﻿@model Milton.Website.Models.Account.ProfileViewModel
+
+<div class="padding-md">
+    <h3 class="header-text m-bottom-md">
+        User Profile
+        <span class="sub-header">
+            Welocome back, @Model.FirstName
+        </span>
+    </h3>
+
+    <div class="row user-profile-wrapper">
+        <div class="col-md-3 user-profile-sidebar m-bottom-md">
+            <div class="row">
+                <div class="col-sm-4 col-md-12">
+                    <div class="user-profile-pic">
+                        <img src="/images/profile/profile1.jpg" alt="">
+                        @*<div class="ribbon-wrapper">
+                            <div class="ribbon-inner shadow-pulse bg-success">
+                                Elite
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div><!-- ./row -->
+        </div><!-- ./col -->
+        <div class="col-md-9">
+            <div class="smart-widget">
+                <div class="smart-widget-inner">
+                    <div class="smart-widget-body">
+                        <h4 class="header-text m-top-md">General Information</h4>
+                        <form class="form-horizontal m-top-md">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Name</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", placeholder = "Name" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Surname</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", placeholder = "Surname" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Gender</label>
+                                <div class="col-sm-9">
+                                    <div class="radio inline-block">
+                                        <div class="custom-radio m-right-xs">
+                                            <input type="radio" id="inlineRadio1" name="profileGender">
+                                            <label for="inlineRadio1"></label>
+                                        </div>
+                                        <div class="inline-block vertical-top">Male</div>
+                                    </div>
+                                    <div class="radio inline-block m-left-sm">
+                                        <div class="custom-radio m-right-xs">
+                                            <input type="radio" id="inlineRadio2" name="profileGender">
+                                            <label for="inlineRadio2"></label>
+                                        </div>
+                                        <div class="inline-block vertical-top">Female</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Address</label>
+                                <div class="col-sm-9">
+                                    <textarea rows="4" class="form-control"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Phone</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Website</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="">
+                                </div>
+                            </div>
+
+                            <h4 class="header-text m-top-lg">Security Setting</h4>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Security Question</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" value="">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Security Browsing</label>
+                                <div class="col-sm-9">
+                                    <div class="m-top-xs">
+                                        <div class="custom-checkbox">
+                                            <input type="checkbox" id="securityChk1">
+                                            <label for="securityChk1"></label>
+                                        </div>
+                                        Yes
+                                        <div class="custom-checkbox m-left-sm">
+                                            <input type="checkbox" id="securityChk2">
+                                            <label for="securityChk2"></label>
+                                        </div>
+                                        No
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group m-top-lg">
+                                <label class="col-sm-3 control-label"></label>
+                                <div class="col-sm-9">
+                                    <a class="btn btn-success">Save Changes</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- ./smart-widget-body -->
+                </div><!-- ./smart-widget-inner -->
+            </div><!-- ./smart-widget -->
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        $(function () {
+
+        });
+    </script>
+
+}
